@@ -1,0 +1,28 @@
+<h2 mat-dialog-title class="compact-title">
+  {{ designation.DesignationID ? 'Edit Designation' : 'Add New Designation' }}
+</h2>
+
+<app-loading-container [loading]="isLoading" [size]="50">
+  <mat-dialog-content class="user-dialog-content">
+    <div class="form-stack single-field">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Designation Name</mat-label>
+        <input 
+          matInput 
+          [(ngModel)]="designation.DesignationName" 
+          required 
+          (keyup.enter)="save()" />
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end" class="dialog-footer">
+    <button mat-button (click)="cancel()" [disabled]="isLoading">Cancel</button>
+ <button 
+    mat-raised-button 
+    color="primary" 
+    (click)="save()">
+    {{ designation.DesignationID ? 'Update' : 'Create' }}
+  </button>
+  </mat-dialog-actions>
+</app-loading-container>

@@ -1,0 +1,60 @@
+<div class="full-page-center">
+  <app-loading-container [loading]="isLoading" [size]="60">
+    <div class="login-container">
+      <h1 class="portal-title">Company Printers</h1>
+      <h2 class="login-header">Login</h2>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Username</mat-label>
+        <mat-icon matPrefix>person</mat-icon>
+        <input
+          matInput
+          [(ngModel)]="LoginObj.userName"
+          required
+          #usernameInput="ngModel"
+          [disabled]="isLoading"
+        />
+        <mat-error *ngIf="usernameInput.invalid && usernameInput.touched">
+          Username is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Password</mat-label>
+        <mat-icon matPrefix>lock</mat-icon>
+        <input
+          matInput
+          [(ngModel)]="LoginObj.password"
+          required
+          #passwordInput="ngModel"
+          [type]="passwordVisible ? 'text' : 'password'"
+          [disabled]="isLoading"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          type="button"
+          (click)="passwordVisible = !passwordVisible"
+          [disabled]="isLoading"
+        >
+          <mat-icon>
+            {{ passwordVisible ? 'visibility_off' : 'visibility' }}
+          </mat-icon>
+        </button>
+        <mat-error *ngIf="passwordInput.invalid && passwordInput.touched">
+          Password is required
+        </mat-error>
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        color="primary"
+        class="full-width login-btn"
+        (click)="onSubmit()"
+        [disabled]="isLoading"
+      >
+        Log In
+      </button>
+    </div>
+  </app-loading-container>
+</div>

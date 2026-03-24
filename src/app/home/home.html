@@ -1,0 +1,37 @@
+@if (isLoading) {
+  <mat-progress-bar mode="indeterminate" color="primary"></mat-progress-bar>
+}
+
+
+<nav class="navbar">
+  <div class="logo">
+    <mat-icon class="logo-icon">print</mat-icon>
+    <span>Company Printers</span>
+  </div>
+
+  <ul class="nav-links">
+    <!-- Always visible -->
+    <li>
+      <a routerLink="/printers" routerLinkActive="active">Printers</a>
+    </li>
+
+    <!-- Only for System Administrators -->
+    @if (isAdmin()) {
+      <li>
+        <a routerLink="/users" routerLinkActive="active">Users</a>
+      </li>
+      <li>
+        <a routerLink="/designations" routerLinkActive="active">Designations</a>
+      </li>
+    }
+
+    <!-- Logout Button -->
+    <li>
+      <button class="logout-btn" (click)="logout()">Logout</button>
+    </li>
+  </ul>
+</nav>
+
+<div class="content">
+  <router-outlet></router-outlet>
+</div>

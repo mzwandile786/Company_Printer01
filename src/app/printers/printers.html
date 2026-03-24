@@ -1,0 +1,165 @@
+<div class="mat-typography page-container">
+  <div class="page-title">
+    <h1>Printer Management</h1>
+  </div>
+
+  <app-loading-container [loading]="isLoading">
+
+  <div class="filter-box mat-elevation-z2">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Printer Make</mat-label>
+      <mat-select [(ngModel)]="filters.printerMake">
+        <mat-option [value]="null">All Makes</mat-option>
+        <mat-option *ngFor="let make of printerMakes" [value]="make.printerMakeID">
+          {{ make.printerMakeName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>From Date</mat-label>
+      <input matInput [matDatepicker]="fromPicker" [(ngModel)]="filters.fromDate">
+      <mat-datepicker-toggle matSuffix [for]="fromPicker"></mat-datepicker-toggle>
+      <mat-datepicker #fromPicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>To Date</mat-label>
+      <input matInput [matDatepicker]="toPicker" [(ngModel)]="filters.toDate">
+      <mat-datepicker-toggle matSuffix [for]="toPicker"></mat-datepicker-toggle>
+      <mat-datepicker #toPicker></mat-datepicker>
+    </mat-form-field>
+
+    <div class="filter-actions">
+    <button
+    *ngIf="!isLevel1"
+    mat-raised-button
+   class="btn-delete"
+    (click)="deleteSelected()"
+    [disabled]="!hasSelection">
+  Delete Selected ({{selection.selected.length}})
+</button>
+
+
+     <!--- <button mat-raised-button class="btn-save" (click)="openDialog()">
+        <mat-icon>add</mat-icon> Add New
+      </button>  -->
+
+      <button mat-raised-button class="btn-search" (click)="search()">
+        <mat-icon>search</mat-icon> Search
+      </button>
+
+      <button mat-stroked-button class="btn-clear" (click)="clearFilters()">
+        Clear
+      </button>
+    </div>
+  </div>
+
+  <div class="table-header">
+  <button mat-raised-button class="btn-green" (click)="openDialog()">
+    Add New Printer
+  </button>
+
+ <div class="search-wrapper">
+  <mat-icon class="search-icon">search</mat-icon>
+  <input type="text"
+         placeholder="Search Printers..."
+         [(ngModel)]="globalFilter"
+         (keyup)="applyGlobalFilter()"
+         class="filter-input">
+</div>
+</div>
+
+  <div class="table-container mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()">
+          </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+            [checked]="selection.isSelected(row)">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="PrinterName">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="header-label">Name</div>
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.PrinterName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="PrinterMakeName">
+  <th mat-header-cell *matHeaderCellDef> 
+    <div class="header-label">Make</div>
+  </th>
+  <td mat-cell *matCellDef="let element"> {{element.PrinterMakeName}} </td>
+</ng-container>
+
+      <ng-container matColumnDef="FolderToMonitor">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="header-label">Folder</div>
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.FolderToMonitor}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="OutputType">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="header-label">Output</div>
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.OutputType}} </td>
+      </ng-container>
+
+     <ng-container matColumnDef="FileOutput">
+  <th mat-header-cell *matHeaderCellDef> 
+    <div class="header-label">File Output</div>
+  </th>
+  <td mat-cell *matCellDef="let element"> {{element.FileOutput}} </td>
+</ng-container>
+
+      <ng-container matColumnDef="Active">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let element">
+          <span [style.color]="element.Active ? 'green' : 'red'" style="font-weight: bold;">
+            {{element.Active ? 'Active' : 'Inactive'}}
+          </span>
+        </td>
+      </ng-container>
+
+    <ng-container matColumnDef="CreatedTimeStamp">
+  <th mat-header-cell *matHeaderCellDef> 
+    <div class="header-label">Created</div>
+  </th>
+  <td mat-cell *matCellDef="let element"> {{element.CreatedTimeStamp | date:'short'}} </td>
+</ng-container>
+
+      <ng-container matColumnDef="Edit">
+        <th mat-header-cell *matHeaderCellDef> Edit </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="primary" (click)="openDialog(element)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Delete">
+        <th mat-header-cell *matHeaderCellDef> Delete </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="warn" (click)="deletePrinter(element.EngenPrintersID)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" showFirstLastButtons></mat-paginator>
+  </div>
+  </app-loading-container>
+</div>

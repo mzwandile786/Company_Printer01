@@ -1,0 +1,222 @@
+/* PAGE TITLE */
+.page-title {
+  text-align: center;
+  /* Clears the fixed navbar perfectly */
+  margin-top: 120px !important; 
+  margin-bottom: 30px;
+}
+
+.page-title h1 {
+  font-size: 40px;
+  font-weight: 700;
+  color: #1f4fd8; /* Matches your branding */
+  margin: 0;
+  letter-spacing: -0.5px;
+  /* Optional: adds a nice fade-in effect */
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* SEARCH SECTION */
+.search-section {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
+}
+
+/* CARD */
+.filter-card {
+  padding: 30px 40px;
+  min-width: 500px;
+  max-width: 700px;
+  border-radius: 12px;
+}
+
+/* ROWS */
+.filter-row {
+  margin-bottom: 20px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* BUTTONS */
+.button-row {
+  display: flex;
+  gap: 12px;
+}
+
+.button-row button {
+  flex: 1;
+  height: 45px;
+}
+
+/* GREEN BUTTON */
+.btn-green {
+  background-color: #28a745 !important;
+  color: white !important;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.btn-green:hover {
+  background-color: #218838 !important;
+  transform: translateY(-1px);
+}
+
+/* Clear Button (Neutral) */
+.btn-clear {
+  background-color: #fff !important;
+  color: #000 !important;
+  border: 1px solid #ccc;
+   transition: background-color 0.2s ease;
+}
+  
+
+.btn-clear:hover {
+  background-color: #e2e6ea;
+}
+
+
+.header-label {
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #333;
+}
+
+.column-filter-input {
+  width: 100%;
+  padding: 5px 8px;
+  font-size: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.column-filter-input:focus {
+  border-color: #3f51b5;
+  outline: none;
+}
+
+th.mat-header-cell {
+  padding: 10px 5px !important;
+  vertical-align: bottom;
+}
+
+
+
+
+.table-header {
+  display: flex;
+  justify-content: flex-end; /* input on the right */
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  background-color: #f5f5f5; /* light gray background */
+  border-radius: 8px;        /* rounded corners for container */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* subtle shadow */
+}
+
+.table-header .filter-input {
+  width: 250px;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-radius: 20px; /* pill shape */
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+  background-color: #fff;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.table-header .filter-input:focus {
+  border-color: #3f51b5; /* Material Indigo accent */
+  box-shadow: 0 0 6px rgba(63, 81, 181, 0.3);
+  background-color: #fff;
+}
+
+.table-header button {
+  margin-right: auto; /* push input to the far right if button exists */
+  padding: 6px 16px;
+  border-radius: 20px;
+  background-color: #4caf50;
+  color: white;
+  font-weight: 500;
+  text-transform: none;
+  transition: all 0.2s;
+}
+
+.table-header button:hover {
+  background-color: #45a049;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+
+/* ================================
+   MATERIAL TABLE HEADER (Telerik style)
+   ================================ */
+
+.mat-mdc-header-row,
+.mat-header-row {
+    background: linear-gradient(to bottom, #6f8fa8, #4f6f88);
+}
+
+.mat-mdc-header-cell,
+.mat-header-cell {
+    color: white !important;
+    font-weight: 600;
+    font-size: 14px;
+    border-right: 1px solid rgba(255,255,255,0.25);
+}
+
+/* remove last column border */
+.mat-mdc-header-cell:last-child,
+.mat-header-cell:last-child {
+    border-right: none;
+}
+
+/* header label styling */
+.header-label {
+    color: white;
+    font-weight: 600;
+}
+
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  /* Match the alignment of your 'Add New' button */
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  color: #757575; /* Material standard secondary color */
+  font-size: 20px;
+  height: 20px;
+  width: 20px;
+  pointer-events: none;
+}
+
+.filter-input {
+  /* This padding is the secret sauce—it pushes the text to the right of the icon */
+  padding-left: 40px !important; 
+  
+  /* Your existing styles from the screenshot */
+  width: 250px;
+  height: 40px;
+  border-radius: 20px;
+  border: 1px solid #dbdbdb;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.filter-input:focus {
+  border-color: #3f51b5; /* Highlight border on click */
+}
+
+

@@ -1,0 +1,271 @@
+.page-container {
+  padding: 30px;
+  background: #f4f6fb;
+  min-height: 100vh;
+}
+
+/* Center Title */
+/* PAGE TITLE */
+.page-title {
+  text-align: center;
+  /* Clears the fixed navbar perfectly */
+  margin-top: 120px !important; 
+  margin-bottom: 30px;
+}
+
+.page-title h1 {
+  font-size: 40px;
+  font-weight: 700;
+  color: #1f4fd8; /* Matches your branding */
+  margin: 0;
+  letter-spacing: -0.5px;
+  /* Optional: adds a nice fade-in effect */
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Ensure the main content area also has a base buffer */
+.content {
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.filter-box {
+  max-width: 800px;
+  margin: 0 auto 40px auto;
+  padding: 35px;
+  background: #ffffff;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.filter-actions {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  justify-content: center;   /* ✅ center horizontally */
+}
+
+
+.table-container {
+  margin-top: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: white;
+}
+
+
+/* ===============================
+   FILTER PANEL BUTTONS
+================================= */
+
+/* Delete Button (Red) */
+.btn-delete {
+  background-color: #e53935 !important;
+  color: white !important;
+}
+
+.btn-delete:hover {
+  background-color: #b71c1c !important;
+}
+
+/* Save / Add Button (Green) */
+.btn-save {
+  background-color: #2e7d32 !important;
+  color: white !important;
+}
+
+.btn-save:hover {
+  background-color: #1b5e20 !important;
+}
+
+/* Search Button (Blue) */
+.btn-search {
+  background-color: #1976d2 !important;
+  color: white !important;
+}
+
+.btn-search:hover {
+  background-color: #0d47a1 !important;
+}
+
+/* Clear Button (Neutral) */
+.btn-clear {
+  background-color: #fff !important;
+  color: #000 !important;
+  border: 1px solid #ccc;
+ 
+}
+
+.btn-clear:hover {
+  background-color: #f1f1f1 !important;
+}
+
+.btn-search,
+.btn-clear,
+.btn-delete {
+  min-width: 150px;   /* adjust if needed */
+  height: 40px;       /* keeps them visually consistent */
+  border-radius: 10px; /* optional: clean look */
+  font-weight: 500;
+}
+
+
+
+
+.header-label {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.column-filter-input {
+  width: 100%;
+  padding: 4px 8px;
+  font-size: 11px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.column-filter-input:focus {
+  border-color: #3f51b5; /* Material Primary Color */
+  box-shadow: 0 0 3px rgba(63, 81, 181, 0.3);
+}
+
+th.mat-header-cell {
+  padding: 8px !important;
+  vertical-align: bottom;
+}
+
+
+.table-header {
+  display: flex;
+  justify-content: space-between; /* button left, search right */
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.table-header .filter-input {
+  width: 250px;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+  background-color: #fff;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.table-header .filter-input:focus {
+  border-color: #3f51b5;
+  box-shadow: 0 0 6px rgba(63, 81, 181, 0.3);
+}
+
+.table-header button {
+  padding: 6px 16px;
+  border-radius: 20px;
+  background-color: #4caf50;
+  color: white;
+  font-weight: 500;
+  text-transform: none;
+  transition: all 0.2s;
+}
+
+.table-header button:hover {
+  background-color: #45a049;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+
+/* ===== TABLE HEADER BACKGROUND (Telerik style) ===== */
+.mat-mdc-header-row,
+.mat-header-row {
+    background: linear-gradient(to bottom, #6f8fa8, #4f6f88); /* blue gradient */
+}
+
+/* Header cells */
+.mat-mdc-header-cell,
+.mat-header-cell {
+    color: white !important;
+    font-weight: 600;
+    font-size: 14px;
+    border-right: 1px solid rgba(255,255,255,0.25);
+}
+
+/* Remove last border */
+.mat-mdc-header-cell:last-child,
+.mat-header-cell:last-child {
+    border-right: none;
+}
+
+/* Optional — header height */
+.mat-mdc-header-row {
+    height: 48px;
+}
+
+.success-snackbar {
+  background: #2e7d32; /* green */
+  color: white;
+}
+
+.error-snackbar {
+  background: #d32f2f; /* red */
+  color: white;
+}
+
+
+
+/* Container to hold both the icon and the input */
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Positions the icon inside the input box */
+.search-icon {
+  position: absolute;
+  left: 12px;
+  color: #757575; /* Grey color to match your UI */
+  font-size: 20px;
+  height: 20px;
+  width: 20px;
+  pointer-events: none; /* Allows user to click "through" the icon into the input */
+}
+
+/* The actual input box */
+.filter-input {
+  padding-left: 40px !important; /* Pushes text right so it doesn't overlap the icon */
+  width: 250px;
+  height: 40px;
+  border-radius: 20px; /* Matches the rounded look in your screenshot */
+  border: 1px solid #dbdbdb;
+  outline: none;
+  transition: border-color 0.2s ease-in-out;
+}
+
+/* Visual feedback when the user clicks to search */
+.filter-input:focus {
+  border-color: #3f51b5; 
+}
+
+
+

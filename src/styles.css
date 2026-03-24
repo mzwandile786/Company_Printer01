@@ -1,0 +1,126 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+/* Fix Angular Material label visibility */
+/* Force proper Material label rendering */
+.mat-mdc-form-field {
+  --mdc-outlined-text-field-label-text-color: rgba(0,0,0,0.75);
+  --mdc-outlined-text-field-focus-label-text-color: #1f4fd8;
+  --mdc-outlined-text-field-outline-color: rgba(0,0,0,0.3);
+  --mdc-outlined-text-field-focus-outline-color: #1f4fd8;
+}
+
+/* Target the custom class for all dialogs (User, Printer, Designation) */
+.custom-dialog-container {
+  
+  .mat-mdc-dialog-surface {
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
+    border-radius: 12px;
+  }
+
+  /* Shared content area styling */
+  .user-dialog-content {
+    flex: 1;
+    max-height: none !important; 
+    overflow: hidden !important; /* REMOVES THE SCROLLBAR */
+    padding: 15px 35px !important;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* COMPACT FIELDS: Manual override for height */
+  .mat-mdc-text-field-wrapper {
+    height: 48px !important; 
+  }
+  
+  .mat-mdc-form-field-flex {
+    height: 48px !important;
+    align-items: center !important;
+  }
+
+  .mat-mdc-form-field-label-wrapper {
+    top: 14px !important;
+  }
+
+  /* Fix for select arrow alignment in compact mode */
+  .mat-mdc-form-field-infix {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+}
+
+/* Layout for forms with multiple fields (User, Printer) */
+.form-stack {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Spreads fields out */
+  gap: 4px;
+  width: 100%;
+}
+
+/* Specific fix for Designation (Single Field) */
+/* Apply this class to the div inside mat-dialog-content for Designation */
+.form-stack.single-field {
+  justify-content: center; /* Centers the one field vertically */
+}
+
+/* Style for the Checkbox in Printer form */
+mat-checkbox {
+  margin-top: 5px;
+}
+
+
+.custom-dialog-container .mat-mdc-text-field-wrapper {
+  /* Shrinking height slightly more from 48px to 44px */
+  height: 44px !important; 
+}
+
+.custom-dialog-container .mat-mdc-form-field-flex {
+  height: 44px !important;
+}
+
+/* Adjust the floating label so it doesn't overlap the smaller input */
+.custom-dialog-container .mat-mdc-form-field-label-wrapper {
+  top: 10px !important; 
+}
+
+/* Tighten the space specifically for the Select/Dropdown infix */
+.custom-dialog-container .mat-mdc-form-field-infix {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+  min-height: 44px !important;
+}
+
+/* Apply this in your main app component or global styles */
+.content {
+  padding-top: 80px; /* This creates a permanent 'buffer' for the fixed navbar */
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.blue-snackbar {
+  --mdc-snackbar-container-color: #1f4fd8 !important;
+  --mdc-snackbar-supporting-text-color: white !important;
+  --mat-snack-bar-button-color: white !important;
+}
+
+
+
+.blue-snackbar .mdc-snackbar__surface {
+  background: #1976d2 !important; /* blue */
+  color: white !important;
+}
+
+.error-snackbar .mdc-snackbar__surface {
+  background: #d32f2f !important; /* red */
+  color: white !important;
+}
+
+
+
+
+
+

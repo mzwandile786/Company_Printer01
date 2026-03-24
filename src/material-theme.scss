@@ -1,0 +1,28 @@
+// 1. Move @use to the very top (it is already here, which is good)
+@use '@angular/material' as mat;
+
+// 2. Define your global HTML styles
+html {
+  height: 100%;
+  @include mat.theme((
+    color: (
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+}
+
+// 3. Define your body styles
+body {
+  color-scheme: light;
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+  margin: 0;
+  height: 100%;
+}
+
+// IMPORTANT: Delete everything below this line! 
+// Do not repeat the @use or the html/body blocks again.

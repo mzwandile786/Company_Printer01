@@ -1,0 +1,121 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #00ced1;
+  color: white;
+  padding: 14px 24px;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 18px;
+  margin: 0;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-links a.active {
+  border-bottom: 2px solid white;
+}
+
+.content {
+  padding: 20px;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;       /* Aligns icon and text horizontally */
+  align-items: center; /* Centers them vertically */
+  gap: 10px;           /* Space between icon and text */
+}
+
+.logo-icon {
+  font-size: 24px;     /* Adjust size of the printer icon */
+  height: 24px;
+  width: 24px;
+}
+
+/* Ensure the navbar stays fixed as requested previously */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0d6efd;
+  color: white;
+  padding: 14px 24px;
+  z-index: 1000;
+}
+
+.logout-btn {
+  /* Light red background */
+  background: hsl(0, 92%, 45%); 
+  /* Matching red border */
+  border: 1px solid #ff4d4d;
+  /* Dark text for contrast against light background */
+  color: white; 
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: #c82333;                /* Dark red (strong) background */
+  border-color: #bd2130;              /* Even darker red border */
+  color: white;                       /* Ensures text stays visible */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Adds depth on hover */
+}
+
+/* Optional: Add a slight scale effect on click */
+.logout-btn:active {
+  transform: scale(0.95);
+}
+
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+mat-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+}
+
+
+
+
+

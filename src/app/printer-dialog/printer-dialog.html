@@ -1,0 +1,71 @@
+<h2 mat-dialog-title class="compact-title">
+  {{ data?.EngenPrintersID ? 'Edit Printer' : 'Add New Printer' }}
+</h2>
+
+<form [formGroup]="printerForm">
+  <mat-dialog-content class="user-dialog-content">
+    <div class="form-stack">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Printer Name</mat-label>
+        <input matInput formControlName="PrinterName" placeholder="Enter printer name">
+        <mat-error *ngIf="printerForm.get('PrinterName')?.hasError('required')">
+          Printer Name is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Printer Make</mat-label>
+        <mat-select formControlName="PrinterMakeID">
+          <mat-option *ngFor="let make of printerMakes" [value]="make.printerMakeID">
+            {{ make.printerMakeName }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="printerForm.get('PrinterMakeID')?.hasError('required')">
+          Printer Make is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Folder to Monitor</mat-label>
+        <input matInput formControlName="FolderToMonitor" placeholder="\\ctdzlp01\formidable\P00\CT3A\in">
+        <mat-error *ngIf="printerForm.get('FolderToMonitor')?.hasError('required')">
+          Folder to Monitor is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>File Output Path</mat-label>
+        <input matInput formControlName="FileOutput" placeholder="\\ctdzlp01\formidable\P00\CT3A\out">
+        <mat-error *ngIf="printerForm.get('FileOutput')?.hasError('required')">
+          File Output Path is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Output Type</mat-label>
+        <input matInput formControlName="OutputType" placeholder="output type PDF/ File Output...">
+        <mat-error *ngIf="printerForm.get('OutputType')?.hasError('required')">
+          Output Type is required
+        </mat-error>
+      </mat-form-field>
+
+      <div class="checkbox-container">
+        <mat-checkbox formControlName="Active" color="primary">
+          Active
+        </mat-checkbox>
+        <mat-error *ngIf="printerForm.get('Active')?.hasError('required') || printerForm.get('Active')?.hasError('requiredTrue')">
+          Must be checked
+        </mat-error>
+      </div>
+
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end" class="dialog-footer">
+    <button mat-button (click)="onNoClick()">Cancel</button>
+   <button mat-raised-button color="primary" (click)="onSave()">
+  {{ data?.EngenPrintersID ? 'Update' : 'Create' }}
+</button>
+  </mat-dialog-actions>
+</form>

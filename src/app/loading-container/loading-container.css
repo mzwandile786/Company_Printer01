@@ -1,0 +1,19 @@
+:host {
+  display: block;
+  position: relative; /* Essential for absolute centering of child */
+}
+
+.absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+app-loading-container {
+  display: block;
+  position: relative; /* Crucial for absolute-center to work */
+  width: 100%;
+  min-height: 400px; /* Forces the container to stay open while loading */
+}  
+

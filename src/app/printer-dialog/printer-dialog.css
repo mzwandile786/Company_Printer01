@@ -1,0 +1,19 @@
+.blue-snackbar .mdc-snackbar__surface {
+  background: #1976d2 !important; /* blue */
+  color: white !important;
+}
+
+.error-snackbar .mdc-snackbar__surface {
+  background: #d32f2f !important; /* red */
+  color: white !important;
+}
+
+.snackbar-error {
+  background-color: #f44336 !important;
+  color: white !important;
+}
+
+/* In your component-specific CSS if it looks too stretched */
+app-loading-container {
+  min-height: 150px; 
+}

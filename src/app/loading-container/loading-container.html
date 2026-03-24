@@ -1,0 +1,11 @@
+<div *ngIf="loading(); else content">
+  <mat-progress-spinner
+    class="absolute-center"
+    [diameter]="size()"
+    mode="indeterminate">
+  </mat-progress-spinner>
+</div>
+
+<ng-template #content>
+  <ng-content></ng-content>
+</ng-template>

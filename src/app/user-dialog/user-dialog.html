@@ -1,0 +1,102 @@
+<h2 mat-dialog-title class="compact-title">
+  {{ isEdit ? 'Edit User' : 'Add New User' }}
+</h2>
+
+<form [formGroup]="form">
+  <mat-dialog-content class="user-dialog-content">
+    <div class="form-stack">
+      <!-- FIRST NAME -->
+      <mat-form-field appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="FirstName">
+        <mat-error *ngIf="f['FirstName'].touched && f['FirstName'].hasError('required')">
+          First name is required
+        </mat-error>
+      </mat-form-field>
+
+      <!-- LAST NAME -->
+      <mat-form-field appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="LastName">
+        <mat-error *ngIf="f['LastName'].touched && f['LastName'].hasError('required')">
+          Last name is required
+        </mat-error>
+      </mat-form-field>
+
+      <!-- EMAIL -->
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="Email" placeholder="Email must be unique">
+        <mat-error *ngIf="f['Email'].touched && f['Email'].hasError('required')">
+          Email is required
+        </mat-error>
+        <mat-error *ngIf="f['Email'].touched && f['Email'].hasError('email')">
+          Invalid email format
+        </mat-error>
+      </mat-form-field>
+
+      <!-- USERNAME -->
+      <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="UserName" placeholder=" Username must unique">
+        <mat-error *ngIf="f['UserName'].touched && f['UserName'].hasError('required')">
+          Username is required
+        </mat-error>
+      </mat-form-field>
+
+   <mat-form-field appearance="outline">
+  <mat-label>Password</mat-label>
+  <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="Password" placeholder=" Password must atleast 5 characters">
+  <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword">
+    <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+  </button>
+  <mat-error *ngIf="f['Password'].touched && f['Password'].hasError('required')">
+    Password is required
+  </mat-error>
+  <mat-error *ngIf="f['Password'].touched && f['Password'].hasError('pattern')">
+    Password must be at least 5 characters and include: uppercase, lowercase, number, and symbol
+  </mat-error>
+</mat-form-field>
+
+
+
+ <mat-form-field appearance="outline" *ngIf="!isEdit">
+  <mat-label>Confirm Password</mat-label>
+  <input matInput [type]="hideConfirmPassword ? 'password' : 'text'" formControlName="ConfirmPassword">
+  <button mat-icon-button matSuffix type="button" (click)="hideConfirmPassword = !hideConfirmPassword">
+    <mat-icon>{{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+  </button>
+  <mat-error *ngIf="f['ConfirmPassword']?.touched && f['ConfirmPassword']?.hasError('required')">
+    Confirm password is required
+  </mat-error>
+  <mat-error *ngIf="f['ConfirmPassword']?.touched && f['ConfirmPassword']?.hasError('passwordMismatch')">
+    Passwords do not match
+  </mat-error>
+</mat-form-field>
+
+      <!-- DESIGNATION -->
+      <mat-form-field appearance="outline">
+        <mat-label>Designation</mat-label>
+        <mat-select formControlName="DesignationID" (selectionChange)="onDesignationChange()">
+          <mat-option [value]="0">Select designation</mat-option>
+          <mat-option *ngFor="let d of designations" [value]="d.DesignationID">
+            {{ d.DesignationName }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="f['DesignationID']?.touched && f['DesignationID']?.hasError('required')">
+          Designation is required
+        </mat-error>
+        <mat-error *ngIf="f['DesignationID']?.touched && f['DesignationID']?.hasError('min')">
+          Please select a designation
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end" class="dialog-footer">
+    <button mat-button type="button" (click)="onCancel()">Cancel</button>
+  <button mat-raised-button color="primary" type="button" (click)="onSave()">
+    {{ isEdit ? 'Update' : 'Create' }}
+  </button>
+  </mat-dialog-actions>
+</form>
