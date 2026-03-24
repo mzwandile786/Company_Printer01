@@ -1,6 +1,7 @@
-import { inject, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
+import { MOCK_USERS, MOCK_DESIGNATIONS } from '../mock-data';
 
 export interface User {
   UserID: number;
@@ -15,29 +16,31 @@ export interface User {
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  private http = inject(HttpClient);
-  private apiUrl = 'https://localhost:7273/api/Users';
-
-  // Get all users
+  // 1. GET ALL USERS: Uses mock data with a small delay for realism
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.apiUrl}/get`);
+    return of(MOCK_USERS as any[]).pipe(delay(400));
   }
 
-  // Create new user
-  createUser(user: User): Observable<any> {
-    return this.http.post(`${this.apiUrl}/insert`, user);
-  }
-
-  // Update user
-  updateUser(user: User): Observable<any> {
-    return this.http.put(`${this.apiUrl}/update/${user.UserID}`, user);
-  }
-
-  // Delete user
-  deleteUser(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/delete/${id}`);
-  }
+  // 2. GET DESIGNATIONS: For your User Form dropdowns
   getDesignations(): Observable<any[]> {
-  return this.http.get<any[]>(`${this.apiUrl}/designations`);
-}
+    return of(MOCK_DESIGNATIONS);
+  }
+
+  // 3. CREATE: Simulates a successful save
+  createUser(user: User): Observable<any> {
+    console.log('Demo: User Created', user);
+    return of({ success: true }).pipe(delay(500));
+  }
+
+  // 4. UPDATE: Simulates a successful edit
+  updateUser(user: User): Observable<any> {
+    console.log('Demo: User Updated ID', user.UserID);
+    return of({ success: true }).pipe(delay(500));
+  }
+
+  // 5. DELETE: Simulates a successful removal
+  deleteUser(id: number): Observable<any> {
+    console.log('Demo: User Deleted ID', id);
+    return of({ success: true }).pipe(delay(500));
+  }
 }
