@@ -49,46 +49,35 @@ private cdr = inject(ChangeDetectorRef); // Inject this
  
 
 onSubmit() {
-  // Use a Promise to defer the state change slightly
-  Promise.resolve().then(() => {
-    this.isLoading = true;
-  });
+  this.isLoading = true;
 
+  // 1. Basic Validation
   if (!this.LoginObj.userName || !this.LoginObj.password) {
     this.showSnackBar('Username and password required');
-    // Ensure we reset loading if validation fails
     this.isLoading = false; 
     return;
   }
 
-  this.http.post(
-    'https://localhost:7273/api/User/login',
-    this.LoginObj,
-    { responseType: 'text' }
-  )
-  .pipe(
-    timeout(5000),
-    finalize(() => {
-      // Finalize runs on completion OR error
-      this.isLoading = false;
-      this.cdr.markForCheck(); 
-    })
-  )
-  .subscribe({
-    next: (res: string) => {
-      localStorage.setItem('currentUser', res);
-      this.router.navigate(['/printers']);
-    },
-    error: (err) => {
-      let message = 'Login failed. Please try again.';
-      if (err.status === 401) {
-        message = 'Invalid username or password.';
-      } else if (err.name === 'TimeoutError') {
-        message = 'Server not responding. API may be offline.';
-      }
-      this.showSnackBar(message);
-    }
-  });
+  // 2. Simulate a Network Delay (makes the spinner show up)
+  setTimeout(() => {
+    // 3. Create a "Fake" Token for the demo
+    const mockUserResponse = JSON.stringify({
+      token: 'demo-token-12345',
+      username: this.LoginObj.userName,
+      role: 'Admin'
+    });
+
+    // 4. Save to LocalStorage so your AuthGuards stay happy
+    localStorage.setItem('currentUser', mockUserResponse);
+
+    this.isLoading = false;
+    this.cdr.markForCheck();
+
+    // 5. Navigate to the dashboard
+    this.router.navigate(['/printers']);
+    
+    this.showSnackBar('Login Successful (Demo Mode)');
+  }, 1000); // 1 second delay
 }
 
 // Helper to keep code clean
