@@ -60,7 +60,7 @@ onSubmit() {
   setTimeout(() => {
     // Determine role based on username for testing
     const assignedRole = this.LoginObj.userName.toLowerCase() === 'admin' 
-      ? 'Admin' 
+      ? 'System Administrator' 
       : 'Level 1 Employee';
 
     const mockUserResponse = JSON.stringify({

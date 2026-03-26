@@ -74,5 +74,25 @@ export const MOCK_USERS = [
     Password: 'password456', 
     DesignationID: 2, 
     DesignationName: 'Software Developer' 
+  },
+    { 
+    UserID: 103, 
+    FirstName: 'Themba', 
+    LastName: 'Doe', 
+    Email: 'themba@company.com', 
+    UserName: 'jdoe', 
+    Password: 'password456', 
+    DesignationID: 2, 
+    DesignationName: 'Level 1 employee' 
+  },
+    { 
+    UserID: 104, 
+    FirstName: 'Sihle', 
+    LastName: 'Doe', 
+    Email: 'sihle@company.com', 
+    UserName: 'Sihle', 
+    Password: 'password456', 
+    DesignationID: 2, 
+    DesignationName: 'Software Developer' 
   }
 ];
