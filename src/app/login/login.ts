@@ -51,33 +51,34 @@ private cdr = inject(ChangeDetectorRef); // Inject this
 onSubmit() {
   this.isLoading = true;
 
-  // 1. Basic Validation
   if (!this.LoginObj.userName || !this.LoginObj.password) {
     this.showSnackBar('Username and password required');
     this.isLoading = false; 
     return;
   }
 
-  // 2. Simulate a Network Delay (makes the spinner show up)
   setTimeout(() => {
-    // 3. Create a "Fake" Token for the demo
+    // Determine role based on username for testing
+    const assignedRole = this.LoginObj.userName.toLowerCase() === 'admin' 
+      ? 'Admin' 
+      : 'Level 1 Employee';
+
     const mockUserResponse = JSON.stringify({
       token: 'demo-token-12345',
       username: this.LoginObj.userName,
-      role: 'Admin'
+      role: assignedRole
     });
 
-    // 4. Save to LocalStorage so your AuthGuards stay happy
     localStorage.setItem('currentUser', mockUserResponse);
-
     this.isLoading = false;
-    this.cdr.markForCheck();
-
-    // 5. Navigate to the dashboard
-    this.router.navigate(['/printers']);
     
-    this.showSnackBar('Login Successful (Demo Mode)');
-  }, 1000); // 1 second delay
+    // Use NgZone to ensure the navigation happens correctly inside the setTimeout
+    this.zone.run(() => {
+      this.router.navigate(['/printers']);
+    });
+    
+    this.showSnackBar(`Logged in as ${assignedRole}`);
+  }, 1000);
 }
 
 // Helper to keep code clean

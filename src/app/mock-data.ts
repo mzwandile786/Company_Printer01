@@ -20,6 +20,18 @@ export const MOCK_PRINTERS = [
     FileOutput: 'C:/Scans/Processed',
     Active: false,
     CreatedTimeStamp: '2026-03-24' 
+  },
+
+    { 
+    EngenPrintersID: 3, 
+    PrinterName: 'HR_Scanner_Main', 
+    PrinterMakeName: 'Canon', 
+    PrinterMakeID: 2,
+    FolderToMonitor: 'C:/Scans/HR', 
+    OutputType: 'JPG',
+    FileOutput: 'C:/Scans/Processed',
+    Active: false,
+    CreatedTimeStamp: '2026-03-24' 
   }
 ];
 

@@ -1,6 +1,7 @@
-import { inject, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
+import { MOCK_DESIGNATIONS } from '../mock-data';
 
 export interface Designation {
   DesignationID?: number;
@@ -10,25 +11,26 @@ export interface Designation {
 @Injectable({ providedIn: 'root' })
 export class DesignationService {
 
-  private http = inject(HttpClient);
-  private apiUrl = 'https://localhost:7273/api/Designation';
-
+  // 1. GET ALL: Loads your mock list of job titles
   getDesignations(): Observable<Designation[]> {
-    return this.http.get<Designation[]>(`${this.apiUrl}/get`);
+    return of(MOCK_DESIGNATIONS as any[]).pipe(delay(400));
   }
 
+  // 2. CREATE: Simulates adding a new designation
   createDesignation(designation: Designation): Observable<any> {
-    return this.http.post(`${this.apiUrl}/insert`, designation);
+    console.log('Demo: Created Designation', designation);
+    return of({ success: true }).pipe(delay(500));
   }
 
+  // 3. UPDATE: Simulates editing a job title
   updateDesignation(designation: Designation): Observable<any> {
-    return this.http.put(
-      `${this.apiUrl}/update/${designation.DesignationID}`,
-      designation
-    );
+    console.log('Demo: Updated Designation ID', designation.DesignationID);
+    return of({ success: true }).pipe(delay(500));
   }
 
+  // 4. DELETE: Simulates removing a designation
   deleteDesignation(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/delete/${id}`);
+    console.log('Demo: Deleted Designation ID', id);
+    return of({ success: true }).pipe(delay(500));
   }
 }

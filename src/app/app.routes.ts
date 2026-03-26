@@ -28,19 +28,19 @@ export const routes: Routes = [
       {
         path: 'printers',
         component: Printers,
-        data: { roles: ['System Administrator', 'Manager', 'Level 1 Employee'] }
+        data: { roles: ['System Administrator', 'Manager', 'Level 1 Employee', 'Admin'] }
       },
 
       {
         path: 'users',
         component: Users,
-        data: { roles: ['System Administrator'] }
+        data: { roles: ['System Administrator', 'Admin'] }
       },
 
       {
         path: 'designations',
         component: Designations,
-        data: { roles: ['System Administrator'] }
+        data: { roles: ['System Administrator', 'Admin'] }
       }
 
     ]
